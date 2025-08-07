@@ -1,0 +1,52 @@
+﻿
+
+
+<div class="container-form">
+    <form>
+        <h2 class="text-center">Registre-se</h2>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nome</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Senha</label>
+            <input id="password" type="password" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Corfirmar senha</label>
+            <input id="password" type="password" class="form-control">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="mostrarSenha">
+            <label class="form-check-label" for="mostrarSenha">
+                Mostrar senha
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Cadastre-se</button>
+        
+    </form>
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+
+
+    .container-form {
+        background: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 90%;
+        z-index: 1;
+    }
+</style>
+<script src="~/js/site.js"></script>

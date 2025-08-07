@@ -1,4 +1,6 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const mostrarSenha = document.getElementById("mostrarSenha");
+const senha = document.getElementById("password");
 
-// Write your JavaScript code.
+mostrarSenha.addEventListener('change', function () {
+    senha.type = this.checked ? "text" : "password";
+});
