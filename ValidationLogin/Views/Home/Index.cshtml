@@ -1,8 +1,160 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bem-vindo - EcoTrilhas";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="welcome-container">
+    <div class="welcome-box">
+        <h1>Bem-vindo à EcoTrilhas!</h1>
+        <p>
+            Explore trilhas incríveis, conecte-se com a natureza e compartilhe suas aventuras.
+        </p>
+
+        <div class="btn-group">
+            <a href="/Login/Index" class="btn btn-primary btn-lg">Fazer Login</a>
+            <a href="/Login/Register" class="btn btn-outline-primary btn-lg">Cadastrar-se</a>
+        </div>
+    </div>
 </div>
+
+<style>
+    /* Container centralizado com blur e sombra */
+   
+
+    .welcome-box {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        padding: 40px 50px;
+        max-width: 600px;
+        text-align: center;
+        animation: slideUp 1s ease forwards;
+    }
+
+        /* Título */
+        .welcome-box h1 {
+            color: #2e7d32;
+            font-weight: 900;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(46, 125, 50, 0.5);
+            animation: glow 2.5s ease-in-out infinite alternate;
+        }
+
+        /* Parágrafo */
+        .welcome-box p {
+            color: #4a654a;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+    /* Botões */
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .btn-primary {
+        background-color: #2e7d32;
+        border-color: #2e7d32;
+        font-weight: 600;
+        padding: 15px 40px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 6px 12px rgba(46, 125, 50, 0.4);
+        border-radius: 50px;
+    }
+
+        .btn-primary:hover {
+            background-color: #256428;
+            border-color: #1e5221;
+            box-shadow: 0 8px 20px rgba(37, 100, 40, 0.6);
+            transform: translateY(-3px);
+        }
+
+    .btn-outline-primary {
+        color: #2e7d32;
+        border-color: #2e7d32;
+        font-weight: 600;
+        padding: 15px 40px;
+        border-radius: 50px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #2e7d32;
+            color: #fff;
+        }
+
+    /* Animações */
+
+    @@keyframes slideUp {
+        0%
+
+    {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@keyframes fadeInBackground {
+        from
+
+    {
+        background-color: transparent;
+    }
+
+    to {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    }
+
+    @@keyframes glow {
+        from
+
+    {
+        text-shadow: 0 0 10px rgba(46, 125, 50, 0.6);
+    }
+
+    to {
+        text-shadow: 0 0 25px rgba(46, 125, 50, 1);
+    }
+
+    }
+
+    /* Responsividade */
+    @@media (max-width: 768px) {
+        .welcome-box
+
+    {
+        padding: 30px 20px;
+    }
+
+    .welcome-box h1 {
+        font-size: 2.5rem;
+    }
+
+    .welcome-box p {
+        font-size: 1.1rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-primary, .btn-outline-primary {
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    }
+</style>
