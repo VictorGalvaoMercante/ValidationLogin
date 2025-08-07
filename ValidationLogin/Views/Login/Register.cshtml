@@ -1,36 +1,62 @@
-﻿
-
+﻿@model ValidationLogin.Models.Usuario
+@{
+    ViewData["Title"] = "Registrar";
+}
 
 <div class="container-form">
-    <form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+    <form asp-controller="Login" asp-action="Register" method="post">
+
         <h2 class="text-center">Registre-se</h2>
+
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nome</label>
-            <input type="text" class="form-control" aria-describedby="emailHelp">
+            <label asp-for="Nome" class="form-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
+
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="email" class="form-control" aria-describedby="emailHelp">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
+
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Senha</label>
-            <input id="password" type="password" class="form-control">
+            <label asp-for="Senha" class="form-label"></label>
+            <input asp-for="Senha" type="password" class="form-control" />
+            <span asp-validation-for="Senha" class="text-danger"></span>
         </div>
+
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Corfirmar senha</label>
-            <input id="password" type="password" class="form-control">
+            <label asp-for="ConfirmacaoSenha" class="form-label"></label>
+            <input asp-for="ConfirmacaoSenha" type="password" class="form-control" />
+            <span asp-validation-for="ConfirmacaoSenha" class="text-danger"></span>
         </div>
+
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="mostrarSenha">
-            <label class="form-check-label" for="mostrarSenha">
-                Mostrar senha
-            </label>
+            <label class="form-check-label" for="mostrarSenha">Mostrar senha</label>
         </div>
 
         <button type="submit" class="btn btn-success w-100">Cadastre-se</button>
         
     </form>
+    <a class="btn btn-secondary w-100 mt-2 text-center" asp-action = "Index" asp-controller="Login">Logar</a>
 </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 <style>
     * {
@@ -49,4 +75,3 @@
         z-index: 1;
     }
 </style>
-<script src="~/js/site.js"></script>

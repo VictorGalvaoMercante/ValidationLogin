@@ -1,13 +1,13 @@
 ﻿<div class="container-form">
-    <form>
-        <h2 class="text-center ">Login</h2>
+    <form asp-action="Index" asp-controller="Login" method="post">
+        <h2 class="text-center">Login</h2>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="email" class="form-control" aria-describedby="emailHelp">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Senha</label>
-            <input id="password" type="password" class="form-control">
+            <label for="password" class="form-label">Senha</label>
+            <input id="password" name="senha" type="password" class="form-control" required>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="mostrarSenha">
@@ -17,9 +17,11 @@
         </div>
 
         <button type="submit" class="btn btn-success w-100">Entrar</button>
-        <button class="btn btn-secondary w-100" style="margin-top: 5px" asp-controller="login" asp-action="Register">Cadastre-se</button>
     </form>
+
+    <a class="btn btn-secondary w-100 mt-2 text-center" href="/Login/Register">Cadastre-se</a>
 </div>
+
 
 <style>
     * {
