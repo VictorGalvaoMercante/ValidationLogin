@@ -25,4 +25,6 @@ namespace ValidationLogin.Models
 
         public string? SenhaHash { get; set; }
     }
+    
+
 }
