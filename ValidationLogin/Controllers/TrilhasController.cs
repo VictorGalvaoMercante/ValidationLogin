@@ -54,7 +54,7 @@ namespace ValidationLogin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrilhaId,Nome,Localizacao,DistanciaKm,Dificuldade,Data")] Trilha trilha)
+        public async Task<IActionResult> Create([Bind("TrilhaId,Nome,Localizacao,DistanciaKm,Dificuldade,Data,ImagemUrl")] Trilha trilha)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ValidationLogin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrilhaId,Nome,Localizacao,DistanciaKm,Dificuldade,Data")] Trilha trilha)
+        public async Task<IActionResult> Edit(int id, [Bind("TrilhaId,Nome,Localizacao,DistanciaKm,Dificuldade,Data,ImagemUrl")] Trilha trilha)
         {
             if (id != trilha.TrilhaId)
             {
@@ -115,6 +115,7 @@ namespace ValidationLogin.Controllers
             }
             return View(trilha);
         }
+
 
         // GET: Trilhas/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -21,5 +21,8 @@ namespace ValidationLogin.Models
 
         [Required(ErrorMessage = "A data é obrigatória.")]
         public DateTime Data { get; set; }
+
+        [Display(Name = "Imagem da Trilha")]
+        public string ImagemUrl { get; set; }
     }
 }
