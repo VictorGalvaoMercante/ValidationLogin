@@ -1,48 +1,63 @@
 ﻿@model ValidationLogin.Models.Trilha
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes da Trilha";
 }
 
-<h1>Details</h1>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold text-success">
+            <i class="bi bi-info-circle-fill"></i> Detalhes da Trilha
+        </h1>
+        <p class="text-muted">Veja todas as informações desta trilha cadastrada.</p>
+    </div>
 
-<div>
-    <h4>Trilha</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Localizacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Localizacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DistanciaKm)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DistanciaKm)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dificuldade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dificuldade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-    </dl>
+    <div class="card shadow-sm border-0 rounded">
+        <div class="card-body p-4">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 fw-bold text-success">
+                    <i class="bi bi-tag"></i> Nome
+                </dt>
+                <dd class="col-sm-9">@Model.Nome</dd>
+
+                <dt class="col-sm-3 fw-bold text-success">
+                    <i class="bi bi-geo-alt-fill"></i> Localização
+                </dt>
+                <dd class="col-sm-9">@Model.Localizacao</dd>
+
+                <dt class="col-sm-3 fw-bold text-success">
+                    <i class="bi bi-rulers"></i> Distância
+                </dt>
+                <dd class="col-sm-9">@Model.DistanciaKm Km</dd>
+
+                <dt class="col-sm-3 fw-bold text-success">
+                    <i class="bi bi-activity"></i> Dificuldade
+                </dt>
+                <dd class="col-sm-9">
+                    <span class="badge
+                        @(Model.Dificuldade == "Fácil" ? "bg-success" :
+                                                    Model.Dificuldade == "Médio" ? "bg-warning text-dark" : "bg-danger")">
+                        @Model.Dificuldade
+                    </span>
+                </dd>
+
+                <dt class="col-sm-3 fw-bold text-success">
+                    <i class="bi bi-calendar-event"></i> Data
+                </dt>
+                <dd class="col-sm-9">@Model.Data.ToString("dd/MM/yyyy")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+        <a asp-action="Edit" asp-route-id="@Model.TrilhaId" class="btn btn-success">
+            <i class="bi bi-pencil"></i> Editar
+        </a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.TrilhaId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
