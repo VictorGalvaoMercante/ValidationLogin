@@ -1,59 +1,88 @@
 ﻿@model IEnumerable<ValidationLogin.Models.Trilha>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Trilhas - EcoTrilhas";
 }
+<div class="container mt-5">
+<h1 class="text-center">Bem vindo! Admin</h1>
+<p class="text-center" style="margin-bottom:100px; color: gray;">Aqui você pode criar novas trilhas, editar e deletar.</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-success">
+            <i class="bi bi-tree-fill"></i> Trilhas Disponíveis
+        </h1>
+        <a asp-action="Create" class="btn btn-success shadow-sm">
+            <i class="bi bi-plus-circle"></i> Nova Trilha
+        </a>
+    </div>
 
-<h1>Index</h1>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center shadow-sm">
+            <i class="bi bi-exclamation-circle"></i> Nenhuma trilha cadastrada ainda.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle shadow-sm rounded">
+                <thead class="table-success">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.Localizacao)</th>
+                        <th>@Html.DisplayNameFor(model => model.DistanciaKm) (Km)</th>
+                        <th>@Html.DisplayNameFor(model => model.Dificuldade)</th>
+                        <th>@Html.DisplayNameFor(model => model.Data)</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.Nome</td>
+                            <td>@item.Localizacao</td>
+                            <td>@item.DistanciaKm</td>
+                            <td>
+                                <span class="badge
+                                            @(item.Dificuldade == "Fácil" ? "bg-success" :
+                                                                            item.Dificuldade == "Médio" ? "bg-warning text-dark" : "bg-danger")">
+                            @item.Dificuldade
+                        </span>
+                    </td>
+                    <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.TrilhaId" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.TrilhaId" class="btn btn-outline-info btn-sm">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.TrilhaId" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Localizacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DistanciaKm)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dificuldade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Localizacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DistanciaKm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dificuldade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TrilhaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TrilhaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TrilhaId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    h1 i {
+        margin-right: 10px;
+    }
+
+    .table thead th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .table tbody td {
+        vertical-align: middle;
+    }
+</style>

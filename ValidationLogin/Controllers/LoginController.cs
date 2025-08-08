@@ -39,8 +39,16 @@ namespace ValidationLogin.Controllers
                 var resultado = _passwordHasher.VerifyHashedPassword(usuario, usuario.SenhaHash, senha);
                 if (resultado == PasswordVerificationResult.Success)
                 {
- 
+                    if(email == "admin@gmail.com" && senha == "admin")
+                    {
                     return RedirectToAction("Index", "Trilhas");
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+ 
                 }
             }
             else
