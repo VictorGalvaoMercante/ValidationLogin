@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<ValidationLogin.Models.Trilha>
+
+@{
+    ViewData["Title"] = "Trilhas Disponíveis";
+}
+
+<h2 class="mb-4">Trilhas Disponíveis</h2>
+
+<form method="get" class="mb-4">
+    <input type="text" name="busca" placeholder="Buscar por nome ou localização" value="@Context.Request.Query["busca"]"
+           class="form-control" />
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">Nenhuma trilha encontrada.</div>
+}
+else
+{
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("Detalhes", "TrilhasPublicas", new { id = item.TrilhaId })" class="list-group-item list-group-item-action">
+                <strong>@item.Nome</strong> — @item.Localizacao
+                <span class="badge bg-success float-end">@item.Dificuldade</span>
+            </a>
+        }
+    </div>
+}

@@ -88,7 +88,7 @@ namespace ValidationLogin.Controllers
             }
 
             usuario.SenhaHash = _passwordHasher.HashPassword(usuario, usuario.Senha);
-
+            
 
             _context.Add(usuario);
             _context.SaveChanges();
