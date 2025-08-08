@@ -39,12 +39,16 @@ namespace ValidationLogin.Controllers
                 var resultado = _passwordHasher.VerifyHashedPassword(usuario, usuario.SenhaHash, senha);
                 if (resultado == PasswordVerificationResult.Success)
                 {
-                    // TODO: Criar sessão/cookie aqui para usuário logado
-                    return RedirectToAction("Index", "Home");
+ 
+                    return RedirectToAction("Index", "Trilhas");
                 }
             }
+            else
+            {
+                ModelState.AddModelError("", "Login não encontrado");
 
-            ModelState.AddModelError("", "Email ou senha inválidos.");
+            }
+
             return View();
         }
 
