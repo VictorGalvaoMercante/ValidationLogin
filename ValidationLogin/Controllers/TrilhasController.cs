@@ -154,5 +154,6 @@ namespace ValidationLogin.Controllers
         {
             return _context.Trilha.Any(e => e.TrilhaId == id);
         }
+      
     }
 }

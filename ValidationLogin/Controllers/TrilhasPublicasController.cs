@@ -39,5 +39,14 @@ namespace ValidationLogin.Controllers
 
             return View(trilha);
         }
+        public IActionResult Reservar(int id)
+        {
+            var trilha = _context.Trilha.FirstOrDefault(t => t.TrilhaId == id);
+            if(trilha == null)
+            {
+                return NotFound();
+            }
+            return View(trilha);
+        }
     }
 }

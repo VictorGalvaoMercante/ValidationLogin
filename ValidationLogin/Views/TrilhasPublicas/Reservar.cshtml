@@ -1,0 +1,98 @@
+﻿@model ValidationLogin.Models.Trilha
+@{
+    ViewData["Title"] = "Reserva - " + Model.Nome;
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row g-4 align-items-center">
+
+        <!-- Coluna da Imagem -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg overflow-hidden rounded-4">
+                <img src="@Model.ImagemUrl"
+                     alt="@Model.Nome"
+                     class="w-100"
+                     style="max-height:400px; object-fit:cover;">
+                <div class="card-body bg-light">
+                    <h3 class="fw-bold text-success">@Model.Nome</h3>
+                    <ul class="list-unstyled mt-3 mb-0">
+                        <li><i class="bi bi-geo-alt-fill text-danger"></i> <strong>Localização:</strong> @Model.Localizacao</li>
+                        <li><i class="bi bi-signpost-2-fill text-primary"></i> <strong>Distância:</strong> @Model.DistanciaKm km</li>
+                        <li>
+                            <i class="bi bi-bar-chart-fill text-warning"></i> <strong>Dificuldade:</strong>
+                            <span class="badge
+                                @(Model.Dificuldade == "Fácil" ? "bg-success" :
+                                                                      Model.Dificuldade == "Médio" ? "bg-warning text-dark" : "bg-danger")">
+                                @Model.Dificuldade
+                            </span>
+                        </li>
+                        <li><i class="bi bi-calendar-event-fill text-info"></i> <strong>Data:</strong> @Model.Data.ToString("dd/MM/yyyy")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coluna do Formulário -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold text-center text-success mb-4">
+                        <i class="bi bi-pencil-square me-2"></i> Reserva da Trilha
+                    </h4>
+
+                    <form method="post" asp-action="ConfirmarReserva" asp-route-id="@Model.TrilhaId" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label fw-semibold">Seu Nome</label>
+                            <input type="text" class="form-control" id="nome" name="Nome" placeholder="Digite seu nome completo" required>
+                            <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">E-mail</label>
+                            <input type="email" class="form-control" id="email" name="Email" placeholder="email@exemplo.com" required>
+                            <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="quantidade" class="form-label fw-semibold">Quantidade de Pessoas</label>
+                            <input type="number" class="form-control" id="quantidade" name="Quantidade" min="1" required>
+                            <div class="invalid-feedback">Informe a quantidade de pessoas.</div>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="submit" class="btn btn-success flex-fill">
+                                <i class="bi bi-check-circle-fill me-1"></i> Confirmar Reserva
+                            </button>
+                            <a href="@Url.Action("Index")" class="btn btn-outline-secondary flex-fill">
+                                <i class="bi bi-arrow-left-circle me-1"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+@section Scripts {
+    <script>
+        // Validação Bootstrap
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}
