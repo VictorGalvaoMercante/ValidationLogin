@@ -3,6 +3,19 @@ using ValidationLogin.data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Adicionar suporte a sessão
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo que a sessão fica ativa sem uso
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true; // Necessário para funcionar sem precisar de consentimento de cookies
+});
+
+builder.Services.AddControllersWithViews();
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -23,6 +36,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

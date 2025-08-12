@@ -41,18 +41,19 @@
                     </h4>
 
                     <form method="post" asp-action="ConfirmarReserva" asp-route-id="@Model.TrilhaId" class="needs-validation" novalidate>
+
+                        <!-- Nome e Email preenchidos automaticamente -->
                         <div class="mb-3">
-                            <label for="nome" class="form-label fw-semibold">Seu Nome</label>
-                            <input type="text" class="form-control" id="nome" name="Nome" placeholder="Digite seu nome completo" required>
-                            <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                            <label class="form-label fw-semibold">Seu Nome</label>
+                            <input type="text" class="form-control" name="Nome" value="@ViewBag.NomeUsuario" readonly>
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label fw-semibold">E-mail</label>
-                            <input type="email" class="form-control" id="email" name="Email" placeholder="email@exemplo.com" required>
-                            <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
+                            <label class="form-label fw-semibold">E-mail</label>
+                            <input type="email" class="form-control" name="Email" value="@ViewBag.EmailUsuario" readonly>
                         </div>
 
+                        <!-- Apenas a quantidade -->
                         <div class="mb-3">
                             <label for="quantidade" class="form-label fw-semibold">Quantidade de Pessoas</label>
                             <input type="number" class="form-control" id="quantidade" name="Quantidade" min="1" required>
@@ -75,24 +76,4 @@
     </div>
 </div>
 
-<!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-@section Scripts {
-    <script>
-        // Validação Bootstrap
-        (function () {
-            'use strict';
-            var forms = document.querySelectorAll('.needs-validation');
-            Array.prototype.slice.call(forms).forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        })();
-    </script>
-}

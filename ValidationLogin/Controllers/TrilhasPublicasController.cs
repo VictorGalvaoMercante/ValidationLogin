@@ -42,11 +42,18 @@ namespace ValidationLogin.Controllers
         public IActionResult Reservar(int id)
         {
             var trilha = _context.Trilha.FirstOrDefault(t => t.TrilhaId == id);
-            if(trilha == null)
-            {
+            if (trilha == null)
                 return NotFound();
-            }
+
+            // Se você estiver usando autenticação com sessão ou Identity, pode buscar o usuário logado
+            var usuarioLogado = HttpContext.Session.GetString("UsuarioNome"); // Exemplo se armazenar na sessão
+            var emailLogado = HttpContext.Session.GetString("UsuarioEmail");
+
+            ViewBag.NomeUsuario = usuarioLogado;
+            ViewBag.EmailUsuario = emailLogado;
+
             return View(trilha);
         }
+
     }
 }
